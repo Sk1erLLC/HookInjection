@@ -86,9 +86,7 @@ class HookInjectionBuilder {
             )
         finalInstructionList.insertBefore(finalInstructionList.first, paramSetupInstructions)
         instructions.add(finalInstructionList)
-        if (methodNode?.tryCatchBlocks?.isNotEmpty() == true) {
-            tryCatchBlocks.addAll(methodNode?.tryCatchBlocks!!)
-        }
+        methodNode?.tryCatchBlocks?.also { tryCatchBlocks.addAll(it) }
     }
 
     fun inject() {
