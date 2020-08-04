@@ -43,15 +43,14 @@ class HookInjectionBuilder {
     var tryCatchBlocks = mutableListOf<TryCatchBlockNode>()
 
     fun finalize() {
-        when(null) {
-            target -> error("You appear not to have specified a target MethodNode! Please do so with either the `target` or `into` function")
-            methodNode -> error("You appear not to have specified a hook to inject! Please do so with the `of` function")
-        }
-        val methodArgs = Type.getArgumentTypes(methodNode?.desc)
+        val target = target ?: error("You appear not to have specified a target MethodNode! Please do so with either the `target` or `into` function")
+        val methodNode = methodNode ?: error("You appear not to have specified a hook to inject! Please do so with the `of` function")
+
+        val methodArgs = Type.getArgumentTypes(methodNode.desc)
         val localVariableIndexes = mutableListOf<Int>()
         val paramSetupInstructions = InsnList()
         var index = HookInjectionUtils.getSuggestedStartingIndex(
-            target!!,
+            target,
             injectBefore ?: injectAfter?.next
         )
 
@@ -79,14 +78,14 @@ class HookInjectionBuilder {
 
         val finalInstructionList =
             HookInjectionUtils.getMethodInstructions(
-                methodNode!!,
+                methodNode,
                 shouldRemapReturns,
-                index - methodArgs.size + if (methodNode!!.access and Opcodes.ACC_STATIC == Opcodes.ACC_STATIC) 1 else 0,
+                index - methodArgs.size + if (methodNode.access and Opcodes.ACC_STATIC == Opcodes.ACC_STATIC) 1 else 0,
                 *localVariableIndexes.toIntArray()
             )
         finalInstructionList.insertBefore(finalInstructionList.first, paramSetupInstructions)
         instructions.add(finalInstructionList)
-        methodNode?.tryCatchBlocks?.also { tryCatchBlocks.addAll(it) }
+        tryCatchBlocks.addAll(methodNode.tryCatchBlocks)
     }
 
     fun inject() {
