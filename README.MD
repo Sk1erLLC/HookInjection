@@ -7,7 +7,7 @@ Lightweight utility for injecting the instructions of hooks into `MethodNode`s
 ```kotlin
 getInstructions {
 
-    // First reference your hook method. This can be static but it doesn't matter
+    // Reference your hook method. This can be static but it doesn't matter
     of(MyHookClass::hookMethod)
     
     // Specify the [MethodNode] into which you are injecting
