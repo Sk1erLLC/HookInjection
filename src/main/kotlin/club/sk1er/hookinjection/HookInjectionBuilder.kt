@@ -30,7 +30,6 @@ import kotlin.reflect.KFunction
  * See README for usage
  * @author LlamaLad7
  */
-@SuppressWarnings("unused")
 class HookInjectionBuilder {
     private var target: MethodNode? = null
     private var params = mutableListOf<Any>()
