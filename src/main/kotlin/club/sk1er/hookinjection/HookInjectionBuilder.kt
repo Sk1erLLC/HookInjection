@@ -106,6 +106,8 @@ class HookInjectionBuilder {
         methodNode = HookInjectionUtils.getMethodNode(owner, hook.name)
     }
 
+    fun from(hook: KFunction<*>) = of(hook)
+
     fun into(methodNode: MethodNode) {
         target = methodNode
     }

@@ -8,6 +8,7 @@ Lightweight utility for injecting the instructions of hooks into `MethodNode`s
 getInstructions {
 
     // Reference your hook method. This can be static but it doesn't matter
+    // [from] can also be used in-place of [of]
     of(MyHookClass::hookMethod)
     
     // Specify the [MethodNode] into which you are injecting
