@@ -106,7 +106,6 @@ class HookInjectionBuilder {
     fun of(hook: KFunction<*>) {
         val owner = ((hook as FunctionReference).owner as KClass<*>).java
         methodNode = HookInjectionUtils.getMethodNode(owner, hook.name)
-        if (methodNode == null) error("The method ${owner.name}::${hook.name} could not be found!")
     }
 
     fun into(methodNode: MethodNode) {

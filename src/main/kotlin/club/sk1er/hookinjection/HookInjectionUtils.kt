@@ -138,7 +138,7 @@ class HookInjectionUtils {
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-
+            if (hookVisitor.hookNode == null) error("The method ${owner.name}::${name} could not be found!")
             return hookVisitor.hookNode!!
         }
 
