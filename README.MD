@@ -2,7 +2,7 @@
 
 Lightweight utility for injecting the instructions of hooks into `MethodNode`s
 
-###Getting your hook's instructions:
+### Getting your hook's instructions:
 
 ```kotlin
 getInstructions {
@@ -45,11 +45,11 @@ In such a case, `target` can be replaced with [into] for clarity, but they are f
 
 If your hook contains any try-catch blocks, you should use `getInstructionsWithTryCatchNodes` (which returns `Pair<InsnList, List<TryCatchBlockNode>>`), or `injectInstructionsWithTryCatchNodes`.
 
-###Dealing with IllegalAccessExceptions:
+### Dealing with IllegalAccessExceptions:
 
 Due to the nature of this utility, you are likely to run into some of these. Have a look at what is being accessed, and if it something you have defined yourself, make sure it's public.
 If it is a synthetic function, e.g. a lambda, then you should call `HookInjectionUtils.makeMethodsPublic(classNode)` on your hook class.
 
-###General Tips
+### General Tips
 * It isn't recommended that you use `HookInjectionUtils` directly (other than for making synthetic methods public), but if you have to, e.g. you want to write your transformer in Java, everything should be (relatively?) well-documented inside the class. I will probably make some form of Java Builder in the future.
 * If you run into any problems, either submit an Issue, make a pull-request to fix said issue, or DM me on Discord (LlamaLad7#7444)
