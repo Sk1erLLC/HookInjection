@@ -52,4 +52,7 @@ If it is a synthetic function, e.g. a lambda, then you should call `HookInjectio
 
 ### General Tips
 * It isn't recommended that you use `HookInjectionUtils` directly (other than for making synthetic methods public), but if you have to, e.g. you want to write your transformer in Java, everything should be (relatively?) well-documented inside the class. I will probably make some form of Java Builder in the future.
-* If you run into any problems, either submit an Issue, make a pull-request to fix said issue, or DM me on Discord (LlamaLad7#7444)
+* If you run into any (unknown) problems, either submit an Issue, make a pull-request to fix said issue, or DM me on Discord (LlamaLad7#7444)
+
+### Known Issues
+* If you pass a local variable to your hook, and then modify its value within the hook, those changes will be reflected in the parent function. For the moment you can work around this by using, for example, `param(VarInsnNode(Opcodes.ALOAD, 5))` instead of `param(5)`
