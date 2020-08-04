@@ -17,7 +17,7 @@ getInstructions {
     // If neither is used, the hook's instructions will be appended to the target method's instructions
     before(methodNode.instructions.first)
 
-    // If your hook takes parameters, you must then specify what should be used for each one
+    // If your hook takes parameters, you must then specify what should be passed as each one
     // There are a number of different options which can be used interchangeably:
 
     param(3) // The local variable with index 3 will be passed as the first parameter to the hook
@@ -41,14 +41,14 @@ getInstructions {
 
 Your hook can also be injected directly into the target node, using `injectInstructions` instead of `getInstructions`.
 
-In such a case, `target` can be replaced with [into] for clarity, but they are functionally identical.
+In such a case, `target` can be replaced with `into` for clarity, but they are functionally identical.
 
 If your hook contains any try-catch blocks, you should use `getInstructionsWithTryCatchNodes` (which returns `Pair<InsnList, List<TryCatchBlockNode>>`), or `injectInstructionsWithTryCatchNodes`.
 
 ### Dealing with IllegalAccessExceptions:
 
 Due to the nature of this utility, you are likely to run into some of these. Have a look at what is being accessed, and if it something you have defined yourself, make sure it's public.
-If it is a synthetic function, e.g. a lambda, then you should call `HookInjectionUtils.makeMethodsPublic(classNode)` on your hook class.
+If it is a synthetic function, e.g. a lambda, then you should call `HookInjectionUtils.makeMethodsPublic(classNode)` in a transformer for your hook class(es).
 
 ### General Tips
 * It isn't recommended that you use `HookInjectionUtils` directly (other than for making synthetic methods public), but if you have to, e.g. you want to write your transformer in Java, everything should be (relatively?) well-documented inside the class. I will probably make some form of Java Builder in the future.
