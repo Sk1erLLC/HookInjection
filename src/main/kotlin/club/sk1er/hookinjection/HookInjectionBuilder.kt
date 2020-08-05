@@ -63,6 +63,7 @@ class HookInjectionBuilder {
                     val newIndex = paramIndex + hookParamOffset
                     if (params[paramIndex] is Int && newIndex == instruction.`var`) {
                         params[paramIndex] = VarInsnNode(instruction.opcode - 33, instruction.`var`)
+                        break
                     }
                 }
             }
