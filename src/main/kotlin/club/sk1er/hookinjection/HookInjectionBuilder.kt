@@ -53,6 +53,21 @@ class HookInjectionBuilder {
             injectBefore ?: injectAfter?.next
         )
 
+        val hookIsStatic = methodNode.access and Opcodes.ACC_STATIC != 0
+        val hookParamOffset = if (hookIsStatic) 0 else 1
+        val hookParamRange = hookParamOffset until methodArgs.size + hookParamOffset
+
+        for (instruction in methodNode.instructions) {
+            if (instruction is VarInsnNode && instruction.opcode in Opcodes.ISTORE..Opcodes.ASTORE && instruction.`var` in hookParamRange) {
+                for (paramIndex in params.indices) {
+                    val newIndex = paramIndex + hookParamOffset
+                    if (params[paramIndex] is Int && newIndex == instruction.`var`) {
+                        params[paramIndex] = VarInsnNode(instruction.opcode - 33, instruction.`var`)
+                    }
+                }
+            }
+        }
+
         for ((i, param) in params.withIndex()) {
             when (param) {
                 is Int -> localVariableIndexes.add(param)

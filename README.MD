@@ -56,4 +56,4 @@ If it is a synthetic function, e.g. a lambda, then you should call `HookInjectio
 * If you run into any (unknown) problems, either submit an Issue, make a pull-request to fix said issue, or DM me on Discord (LlamaLad7#7444)
 
 ### Known Issues
-* If you pass a local variable to your hook, and then modify its value within the hook, those changes will be reflected in the parent function. For the moment you can work around this by using, for example, `param(VarInsnNode(Opcodes.ALOAD, 5))` instead of `param(5)`
+

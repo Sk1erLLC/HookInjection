@@ -13,6 +13,9 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation ("org.jetbrains.kotlin:kotlin-reflect") {
+        exclude module: "kotlin-stdlib"
+    }
     implementation group: 'org.ow2.asm', name: 'asm-debug-all', version: '5.0.2'
     implementation "codes.som.anthony:koffee:8.0.2"
     testCompile group: 'junit', name: 'junit', version: '4.12'

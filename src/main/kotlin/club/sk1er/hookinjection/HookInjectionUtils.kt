@@ -38,7 +38,7 @@ class HookInjectionUtils {
             vararg paramIndexes: Int
         ): InsnList {
             val list = methodNode.instructions
-            val static = methodNode.access and Opcodes.ACC_STATIC == Opcodes.ACC_STATIC
+            val static = methodNode.access and Opcodes.ACC_STATIC != 0
             val end = LabelNode()
 
             if (remapReturns) {
@@ -46,10 +46,8 @@ class HookInjectionUtils {
             }
 
             val offset = if (static) 0 else 1
-            val it = list.iterator()
 
-            loop@ while (it.hasNext()) {
-                val node = it.next()
+            loop@ for (node in list) {
 
                 if (node is VarInsnNode) {
                     for (i in offset until paramIndexes.size + offset) {
