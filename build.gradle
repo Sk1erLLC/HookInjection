@@ -3,8 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
 }
 
-group 'com.llamalad7'
-version '1.0-SNAPSHOT'
+group 'club.sk1er'
+version '1.0'
 
 repositories {
     mavenCentral()
@@ -16,14 +16,10 @@ dependencies {
     implementation ("org.jetbrains.kotlin:kotlin-reflect") {
         exclude module: "kotlin-stdlib"
     }
-    implementation group: 'org.ow2.asm', name: 'asm-debug-all', version: '5.0.2'
+    implementation 'org.ow2.asm:asm-debug-all:5.0.2'
     implementation "codes.som.anthony:koffee:8.0.2"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
