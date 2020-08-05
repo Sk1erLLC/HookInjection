@@ -8,7 +8,7 @@ version '1.0'
 
 repositories {
     mavenCentral()
-    maven { url "https://maven.hackery.site/" }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -17,7 +17,7 @@ dependencies {
         exclude module: "kotlin-stdlib"
     }
     implementation 'org.ow2.asm:asm-debug-all:5.0.2'
-    implementation "codes.som.anthony:koffee:8.0.2"
+    implementation "com.github.half-cambodian-hacker-man:Koffee:d8cee73"
 }
 
 compileKotlin {
