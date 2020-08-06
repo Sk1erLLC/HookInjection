@@ -193,5 +193,5 @@ fun getInstructionsWithTryCatchNodes(routine: HookInjectionBuilder.() -> Unit): 
     val hookBuilder = HookInjectionBuilder()
     routine(hookBuilder)
     hookBuilder.finalize()
-    return hookBuilder.instructions to hookBuilder.tryCatchBlocks
+    return Pair(hookBuilder.instructions, hookBuilder.tryCatchBlocks)
 }
